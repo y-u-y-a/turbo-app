@@ -1,0 +1,23 @@
+name: 新規issue作成
+description: 新規issueを作成してください。
+# title: ''
+labels: []
+assignees:
+  - y-u-y-a
+
+body:
+  - id: background
+    type: textarea
+    attributes:
+      label: 概要・目的
+    validations:
+      required: true
+
+  - id: completion
+    type: textarea
+    attributes:
+      label: 完了条件
+      value: |
+        - [ ]
+    validations:
+      required: true

@@ -1,0 +1,278 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "NextApp API",
+    "description": "This is a NextApp API definition"
+  },
+  "servers": [{ "url": "https://api.example.com/api/v1" }],
+  "paths": {
+    "/users": {
+      "get": {
+        "tags": ["User"],
+        "summary": "User一覧取得",
+        "description": "登録されているUserをページネーション取得します。",
+        "parameters": [{ "$ref": "#/components/parameters/CurrentPage" }, { "$ref": "#/components/parameters/EmailKeyword" }],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/GetUsersResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundErrorResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErrorResponse"
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "tags": ["User"],
+        "summary": "User取得",
+        "description": "登録されているユーザーを一覧で取得します。",
+        "parameters": [{ "$ref": "#/components/parameters/UserId" }],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/GetUserResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundErrorResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErrorResponse"
+          }
+        }
+      }
+    },
+    "/users/{userId}/update": {
+      "post": {
+        "tags": ["User"],
+        "summary": "User更新",
+        "description": "ユーザー情報を更新します。",
+        "parameters": [{ "$ref": "#/components/parameters/UserId" }],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UpdateUserRequestBody"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UpdateUserResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundErrorResponse"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerErrorResponse"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Paging": {
+        "type": "object",
+        "required": ["totalPages", "currentPage", "paginate", "total"],
+        "properties": {
+          "totalPages": { "type": "integer", "title": "総ページ数" },
+          "currentPage": { "type": "integer", "title": "取得したページ" },
+          "paginate": { "type": "integer", "title": "ページ毎の表示件数" },
+          "total": { "type": "integer", "title": "アイテムの総数" }
+        }
+      },
+      "User": {
+        "type": "object",
+        "required": ["id", "name", "email"],
+        "properties": {
+          "id": { "type": "string", "title": "ID" },
+          "name": { "type": "string", "title": "ユーザー名" },
+          "email": { "type": "string", "title": "メールアドレス" }
+        }
+      },
+      "Users": {
+        "type": "array",
+        "items": { "$ref": "#/components/schemas/User" }
+      }
+    },
+    "parameters": {
+      "CurrentPage": {
+        "name": "currentPage",
+        "in": "query",
+        "required": true,
+        "description": "現在のページ番号（1〜）",
+        "schema": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "Paginate": {
+        "name": "paginate",
+        "in": "query",
+        "required": true,
+        "description": "ページ毎の表示件数",
+        "schema": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "EmailKeyword": {
+        "name": "email",
+        "in": "query",
+        "required": true,
+        "description": "メールアドレス検索値",
+        "schema": { "type": "string" }
+      },
+      "UserId": {
+        "in": "path",
+        "name": "userId",
+        "description": "取得したいユーザーIDを指定します。",
+        "required": true,
+        "schema": { "type": "string" }
+      }
+    },
+    "requestBodies": {
+      "UpdateUserRequestBody": {
+        "required": true,
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": ["name", "email"],
+              "properties": {
+                "name": { "type": "string", "title": "ユーザー名" },
+                "email": { "type": "string", "title": "メールアドレス" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "GetUserResponse": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            },
+            "examples": {
+              "dummy": {
+                "value": { "id": 1, "name": "テスト太郎", "email": "test.taro@example.com" }
+              }
+            }
+          }
+        }
+      },
+      "UpdateUserResponse": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            },
+            "examples": {
+              "dummy": {
+                "value": { "id": "A0001", "name": "テスト太郎", "email": "test.taro@example.com" }
+              }
+            }
+          }
+        }
+      },
+      "GetUsersResponse": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": ["users", "paging"],
+              "properties": {
+                "users": {
+                  "$ref": "#/components/schemas/Users"
+                },
+                "paging": {
+                  "$ref": "#/components/schemas/Paging"
+                }
+              }
+            },
+            "examples": {
+              "dummy": {
+                "value": {
+                  "users": [
+                    { "id": 1, "name": "dummy01", "email": "dummy01azon@example.com" },
+                    { "id": 2, "name": "dummy02", "email": "dummy02@example.com" },
+                    { "id": 3, "name": "dummy03", "email": "dummy03@example.com" },
+                    { "id": 4, "name": "dummy04", "email": "dummy04@example.com" },
+                    { "id": 5, "name": "dummy05", "email": "dummy05@example.com" },
+                    { "id": 6, "name": "dummy06", "email": "dummy06@example.com" },
+                    { "id": 7, "name": "dummy07", "email": "dummy07@example.com" },
+                    { "id": 8, "name": "dummy08", "email": "dummy08@example.com" },
+                    { "id": 9, "name": "dummy09", "email": "dummy09@example.com" },
+                    { "id": 10, "name": "dummy10", "email": "dummy10@example.com" },
+                    { "id": 11, "name": "dummy11", "email": "dummy11@example.com" },
+                    { "id": 12, "name": "dummy12", "email": "dummy12@example.com" },
+                    { "id": 13, "name": "dummy13", "email": "dummy13@example.com" },
+                    { "id": 14, "name": "dummy14", "email": "dummy14@example.com" },
+                    { "id": 15, "name": "dummy15", "email": "dummy15@example.com" },
+                    { "id": 16, "name": "dummy16", "email": "dummy16@example.com" },
+                    { "id": 17, "name": "dummy17", "email": "dummy17@example.com" },
+                    { "id": 18, "name": "dummy18", "email": "dummy18@example.com" },
+                    { "id": 19, "name": "dummy19", "email": "dummy19@example.com" },
+                    { "id": 20, "name": "dummy20", "email": "dummy20@example.com" },
+                    { "id": 21, "name": "dummy21", "email": "dummy21@example.com" },
+                    { "id": 22, "name": "dummy22", "email": "dummy22@example.com" },
+                    { "id": 23, "name": "dummy23", "email": "dummy23@example.com" },
+                    { "id": 24, "name": "dummy24", "email": "dummy24@example.com" }
+                  ],
+                  "paging": {
+                    "totalPages": 21,
+                    "currentPage": 1,
+                    "paginate": 5,
+                    "total": 108
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "NotFoundErrorResponse": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": ["code"],
+              "properties": {
+                "code": { "type": "integer", "description": "ステータスコード", "nullable": false, "example": 404 },
+                "message": { "type": "string", "description": "エラーメッセージ", "nullable": false, "example": "Not found resource." }
+              }
+            }
+          }
+        }
+      },
+      "InternalServerErrorResponse": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": ["code"],
+              "properties": {
+                "code": { "type": "integer", "description": "ステータスコード", "nullable": false, "example": 500 },
+                "message": { "type": "string", "description": "エラーメッセージ", "nullable": false, "example": "Server error." }
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "Bearer",
+        "description": "Bearerトークンによる認証です。"
+      }
+    }
+  }
+}

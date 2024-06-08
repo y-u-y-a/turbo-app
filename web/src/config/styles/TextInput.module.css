@@ -1,0 +1,31 @@
+/* https://mantine.dev/core/text-input/ */
+/* .root {
+  .section {
+    margin-right: 4px;
+  }
+} */
+
+/* .root[data-disabled='true'] {
+  border: none;
+  opacity: 0.4;
+  color: white;
+  background: #555555;
+  .inner {
+    background: transparent;
+  }
+} */
+
+.label[data-variant='filled'] {
+  font-weight: bold;
+}
+
+.input[data-variant='filled'] {
+  border: 1px solid #A0A0A0;
+  border-radius: 8px;
+  background: white;
+}
+
+.input[data-variant='filled'][data-error="true"] {
+  color: var(--mantine-color-pink-6);
+  border: 2px solid var(--mantine-color-pink-6);
+}

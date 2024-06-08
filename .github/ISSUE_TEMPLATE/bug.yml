@@ -1,0 +1,31 @@
+name: 不具合報告
+description: 不具合内容を記載してください。
+# title: ''
+labels: ['bug']
+assignees:
+  - y-u-y-a
+
+body:
+  - id: detail
+    type: textarea
+    attributes:
+      label: What's happend ?
+      render: Markdown
+    validations:
+      required: true
+
+  - id: browsers
+    type: dropdown
+    attributes:
+      label: Which brwsers ?
+      multiple: true
+      options:
+        - Chrome
+        - Safari
+        - Firefox
+
+  - id: logs
+    type: textarea
+    attributes:
+      label: Have you logs ?
+      render: Shell
