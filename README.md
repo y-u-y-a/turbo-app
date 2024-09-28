@@ -33,8 +33,9 @@
 
 ```shell:
 $ pnpm install
-$ cd api && vercel env pull .env
 $ pnpm api # generate API schema and document.
+
+$ cd api && vercel env pull .env
 
 $ pnpm dev # start web and api.
 ```
