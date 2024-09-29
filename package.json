@@ -1,5 +1,5 @@
 {
-  "name": "mono-app",
+  "name": "turbo-app",
   "private": true,
   "packageManager": "pnpm@8.15.6",
   "engines": {
