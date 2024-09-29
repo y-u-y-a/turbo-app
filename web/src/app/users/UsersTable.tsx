@@ -1,7 +1,8 @@
 import { PaginationGroup } from "@/components/elements/PaginationGroup"
 import { userService } from "@/services/userService"
-import { Anchor, Table, TableScrollContainer, TableTbody, TableTd, TableTh, TableThead, TableTr } from "@mantine/core"
+import { Anchor, Flex, Table, TableScrollContainer, TableTbody, TableTd, TableTh, TableThead, TableTr } from "@mantine/core"
 import Link from "next/link"
+import { SearchUserForm } from "./SearchUserForm"
 
 interface Props {
   currentPage: number
@@ -13,7 +14,10 @@ export const UsersTable = async ({ currentPage, email }: Props) => {
 
   return (
     <>
-      <PaginationGroup currentPage={currentPage} totalPage={totalPages} />
+      <Flex mb={20} justify="space-between" align="flex-end">
+        <SearchUserForm />
+        <PaginationGroup currentPage={currentPage} totalPage={totalPages} />
+      </Flex>
       <TableScrollContainer minWidth="1060px">
         <Table withTableBorder withColumnBorders>
           <TableThead>

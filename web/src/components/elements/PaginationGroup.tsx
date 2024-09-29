@@ -12,7 +12,7 @@ export const PaginationGroup = ({ currentPage, totalPage, ...props }: Props) => 
   const { paginateQueryParams } = useChangeQueryParams()
 
   return (
-    <Group mb={20} justify="flex-end" {...props}>
+    <Group justify="flex-end" {...props}>
       <Pagination color="primary" total={totalPage} value={currentPage} onChange={paginateQueryParams} />
     </Group>
   )
