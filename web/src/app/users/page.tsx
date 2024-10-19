@@ -1,6 +1,9 @@
-import { Container, Paper, Skeleton, Title } from "@mantine/core"
+import { PaginationGroup } from "@/components/elements/PaginationGroup"
+import { userService } from "@/services/userService"
+import { Container, Flex, Paper, Skeleton, Space, TableScrollContainer } from "@mantine/core"
 import type { Metadata } from "next/types"
 import { Suspense } from "react"
+import { SearchUserForm } from "./SearchUserForm"
 import { UsersTable } from "./UsersTable"
 
 /**
@@ -21,15 +24,22 @@ interface Props {
   }
 }
 
-export default function UsersPage({ searchParams: { page, email } }: Props) {
+export default async function UsersPage({ searchParams: { page, email } }: Props) {
   const currentPage = Number(page) || 1
+  const { items: users, totalPages } = await userService.getByPaging(currentPage, email)
 
   return (
     <Container>
-      <Paper mb={24} mx="auto" radius="sm">
-        <Title mt="md" mb="xl" lh="36px" style={{ borderBottom: "1px solid #A0A0A0" }} size="h4" children="Users" />
-        <Suspense fallback={<Skeleton miw="1060px" h="200px" />}>
-          <UsersTable currentPage={currentPage} email={email || ""} />
+      <Space py={20} />
+      <Paper mb={24} p={40} mx="auto" radius="md">
+        <Flex mb={20} justify="space-between" align="flex-end">
+          <SearchUserForm />
+          <PaginationGroup totalPage={totalPages} />
+        </Flex>
+        <Suspense fallback={<Skeleton miw="1028px" h="200px" />}>
+          <TableScrollContainer minWidth="1028px">
+            <UsersTable users={users} />
+          </TableScrollContainer>
         </Suspense>
       </Paper>
     </Container>

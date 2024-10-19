@@ -1,0 +1,12 @@
+### GET Request
+GET http://localhost:8000/users/test
+Content-Type: application/json
+
+# ### POST Request
+# POST https://api.example.com/users
+# Content-Type: application/json
+
+# {
+#   "name": "John Brown",
+#   "email": "john.brown@example.com"
+# }

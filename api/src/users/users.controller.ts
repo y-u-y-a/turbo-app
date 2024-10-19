@@ -13,6 +13,20 @@ type Paging = {
 export class UsersController {
   // constructor(private readonly usersService: UsersService) {}
 
+  @Get("/test")
+  async test(): Promise<void> {
+    const original = { name: "Alice", age: 20, address: { city: "Tokyo" } }
+    // const shallowCopy = {...original}
+    const shallowCopy = Object.assign({}, original)
+    // const shallowCopy = Object.create(original)
+    // 存在するkeyのvalueは変更される
+    shallowCopy.name = "Bob"
+    console.log("original.name", original.name) // "Alice"
+
+    shallowCopy.address.city = "Osaka"
+    console.log("original.address.city", original.address.city) // "Osaka"
+  }
+
   @Get()
   async getByPaging(@Query("currentPage") page: string, @Query("email") email: string): Promise<{ users: User[]; paging: Paging }> {
     const currentPage = Number(page)
