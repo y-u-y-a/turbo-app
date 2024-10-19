@@ -9,6 +9,7 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "web": "turbo run dev --filter=web",
+    "contract": "turbo run dev --filter=contract",
     "lint": "turbo lint",
     "fmt": "turbo fmt",
     "api": "openapi-typescript ./openapi.json --output ./web/src/services/api.d.ts && npx @redocly/cli build-docs ./openapi.json -o ./openapi.html && open ./openapi.html"
