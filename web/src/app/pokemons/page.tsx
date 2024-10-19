@@ -22,7 +22,7 @@ export default async function RootPage({ searchParams }: Props) {
   return (
     <Container py={40}>
       <Title mb={40} size="h2" data-testid="root-page" children="ポケモン一覧" />
-      <PaginationGroup mb={20} currentPage={currentPage} totalPage={totalPages} />
+      <PaginationGroup mb={20} totalPage={totalPages} />
       <PokemonList pokemons={pokemons} />
     </Container>
   )
