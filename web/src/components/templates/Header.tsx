@@ -18,7 +18,6 @@ export const Header = (props: BoxProps) => {
           <Group gap="md">
             <Group visibleFrom="md" gap="lg">
               <Anchor mt={3} c="primary" fw="bold" underline="never" component={Link} href={Paths.USERS} children="Users" />
-              <Anchor mt={3} c="primary" fw="bold" underline="never" component={Link} href={Paths.POKEMONS} children="Pokemons" />
             </Group>
 
             <Box hiddenFrom="md">
@@ -26,7 +25,6 @@ export const Header = (props: BoxProps) => {
               <Drawer position="right" opened={showMenu} onClose={toggleMenu}>
                 <Stack gap="lg">
                   <Anchor underline="never" href={Paths.USERS} fw="bold" children="Users" />
-                  <Anchor underline="never" href={Paths.POKEMONS} fw="bold" children="Pokemons" />
                 </Stack>
               </Drawer>
             </Box>

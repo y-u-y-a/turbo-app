@@ -1,8 +1,9 @@
+import { Errors } from "@/config/consts"
 import { z } from "zod"
 
 const userFormSchema = z.object({
-  name: z.string(),
-  email: z.string(),
+  name: z.string().trim().min(1, Errors.REQUIRED),
+  email: z.string().trim().min(1, Errors.REQUIRED),
 
   /**
    * @see https://github.com/colinhacks/zod/issues/310#issuecomment-794533682

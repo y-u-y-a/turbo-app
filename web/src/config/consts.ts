@@ -2,7 +2,6 @@ export const APP_TITLE = "Art Gallery"
 
 export const Paths = {
   HOME: "/",
-  POKEMONS: "/pokemons",
   USERS: "/users",
   USER: "/users/:id",
 } as const
