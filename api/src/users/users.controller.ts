@@ -1,60 +1,70 @@
-import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common"
-import { sql } from "@vercel/postgres"
-import { User } from "./user.model"
+import { Body, Controller, Get, Param, Post, Put, Query } from "@nestjs/common"
+import { PrismaClient } from "@prisma/client"
+import { components } from "src/api"
 
-type Paging = {
-  total: number // 総アイテム数
-  currentPage: number // 現在のページ
-  totalPages: number // 総ページ数
-  paginate: number // ページあたりのアイテム数
+type GetUsersResponse = components["responses"]["GetUsersResponse"]["content"]["application/json"]
+type GetUserResponse = components["responses"]["GetUserResponse"]["content"]["application/json"]
+type UpdateUserResponse = components["responses"]["UpdateUserResponse"]["content"]["application/json"]
+
+export interface IUsersController {
+  paging(curentPage: string, email: string): Promise<GetUsersResponse>
+  find(userid: string): Promise<GetUserResponse>
+  update(userid: string, name: string, email: string): Promise<UpdateUserResponse>
+  create(name: string, email: string): Promise<GetUserResponse>
 }
 
+const prisma = new PrismaClient()
+
 @Controller("users")
-export class UsersController {
+export class UsersController implements IUsersController {
   // constructor(private readonly usersService: UsersService) {}
 
-  @Get("/test")
-  async test(): Promise<void> {
-    const original = { name: "Alice", age: 20, address: { city: "Tokyo" } }
-    // const shallowCopy = {...original}
-    const shallowCopy = Object.assign({}, original)
-    // const shallowCopy = Object.create(original)
-    // 存在するkeyのvalueは変更される
-    shallowCopy.name = "Bob"
-    console.log("original.name", original.name) // "Alice"
-
-    shallowCopy.address.city = "Osaka"
-    console.log("original.address.city", original.address.city) // "Osaka"
-  }
-
   @Get()
-  async getByPaging(@Query("currentPage") page: string, @Query("email") email: string): Promise<{ users: User[]; paging: Paging }> {
-    const currentPage = Number(page)
+  async paging(@Query("currentPage") currentPage: string, @Query("email") email = "") {
+    const page = Number(currentPage) || 1
     const limit = 4
-    const offset = limit * (currentPage - 1)
-    const { rows } = await sql<{ count: number }>`SELECT COUNT(*) FROM users WHERE email LIKE ${`%${email}%`};`
-    const { rows: users } = await sql<User>`SELECT * FROM users WHERE email LIKE ${`%${email}%`} ORDER BY id ASC LIMIT ${limit} OFFSET ${offset};`
+
+    const totalUsers = await prisma.user.count({ where: { email: { contains: email } } })
+
+    const users = await prisma.user.findMany({
+      where: { email: { contains: email } },
+      orderBy: { createdAt: "asc" },
+      take: limit,
+      skip: limit * (page - 1),
+    })
 
     return {
       users,
       paging: {
-        currentPage,
+        currentPage: page,
         paginate: limit,
-        total: Number(rows[0].count),
-        totalPages: Math.ceil(rows[0].count / limit),
+        total: totalUsers,
+        totalPages: Math.ceil(totalUsers / limit),
       },
     }
   }
 
   @Get("/:userId")
-  async find(@Param("userId") userId: string): Promise<User> {
-    const { rows } = await sql<User>`SELECT * FROM users WHERE id = ${userId} LIMIT 1;`
-    return rows[0]
+  async find(@Param("userId") userId: string) {
+    const user = await prisma.user.findUniqueOrThrow({ where: { id: userId } })
+    return user
   }
 
-  @Post("/:userId/update")
-  async update(@Param("userId") userId: string, @Body("name") name: string, @Body("email") email: string): Promise<User> {
-    const { rows } = await sql<User>`UPDATE users SET name = ${name}, email = ${email} WHERE id = ${userId} RETURNING *;`
-    return rows[0]
+  @Put("/:userId")
+  async update(@Param("userId") userId: string, @Body("name") name: string, @Body("email") email: string) {
+    console.log({ userId, name, email })
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data: { name, email },
+    })
+    return updatedUser
+  }
+
+  @Post("/create")
+  async create(@Body("name") name: string, @Body("email") email: string) {
+    const createdUser = await prisma.user.create({
+      data: { name, email, imageUrl: "" },
+    })
+    return createdUser
   }
 }

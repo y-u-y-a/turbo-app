@@ -1,12 +1,19 @@
 ### GET Request
-GET http://localhost:8000/users/test
+GET http://localhost:8000/users?email=dummy
 Content-Type: application/json
 
-# ### POST Request
-# POST https://api.example.com/users
-# Content-Type: application/json
+### GET Request
+GET http://localhost:8000/users/f7352dc4-3ad1-4e40-bb8f-ca47cc29f2b8
+Content-Type: application/json
 
-# {
-#   "name": "John Brown",
-#   "email": "john.brown@example.com"
-# }
+### POST Request
+POST http://localhost:8000/users/create
+Content-Type: application/json
+
+{ "name": "Taku","email": "taku@dummy.com" }
+
+### PUT Request
+PUT http://localhost:8000/users/f7352dc4-3ad1-4e40-bb8f-ca47cc29f2b8
+Content-Type: application/json
+
+{ "name": "John","email": "john.ali@dummy.com" }
