@@ -84,6 +84,8 @@ export interface components {
       name: string;
       /** メールアドレス */
       email: string;
+      /** ユーザー画像URL */
+      imageUrl: string;
     };
     Users: components["schemas"]["User"][];
   };

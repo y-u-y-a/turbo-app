@@ -82,11 +82,12 @@
       },
       "User": {
         "type": "object",
-        "required": ["id", "name", "email"],
+        "required": ["id", "name", "email", "imageUrl"],
         "properties": {
           "id": { "type": "string", "title": "ID" },
           "name": { "type": "string", "title": "ユーザー名" },
-          "email": { "type": "string", "title": "メールアドレス" }
+          "email": { "type": "string", "title": "メールアドレス" },
+          "imageUrl": { "type": "string", "title": "ユーザー画像URL" }
         }
       },
       "Users": {

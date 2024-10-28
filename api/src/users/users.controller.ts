@@ -1,17 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put, Query } from "@nestjs/common"
 import { PrismaClient } from "@prisma/client"
-import { components } from "src/api"
-
-type GetUsersResponse = components["responses"]["GetUsersResponse"]["content"]["application/json"]
-type GetUserResponse = components["responses"]["GetUserResponse"]["content"]["application/json"]
-type UpdateUserResponse = components["responses"]["UpdateUserResponse"]["content"]["application/json"]
-
-export interface IUsersController {
-  paging(curentPage: string, email: string): Promise<GetUsersResponse>
-  find(userid: string): Promise<GetUserResponse>
-  update(userid: string, name: string, email: string): Promise<UpdateUserResponse>
-  create(name: string, email: string): Promise<GetUserResponse>
-}
+import { IUsersController } from "./user.model"
 
 const prisma = new PrismaClient()
 
