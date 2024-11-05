@@ -1,0 +1,38 @@
+import { Footer } from "@/components/templates/Footer"
+import { Header } from "@/components/templates/Header"
+import { APP_TITLE } from "@/config/consts"
+import { MantineUIProvider } from "@/config/mantine"
+import { Box, Stack } from "@mantine/core"
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: { default: APP_TITLE, template: `%s | ${APP_TITLE}` },
+  description: `${APP_TITLE}の公式サイトです。`,
+}
+
+interface Props {
+  children: React.ReactNode
+}
+
+export default function RootLayout({ children }: Props) {
+  return (
+    <html lang="ja" style={{ scrollBehavior: "smooth" }}>
+      <head>
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+      </head>
+      <body>
+        <MantineUIProvider>
+          <Analytics />
+          <SpeedInsights />
+          <Stack gap={0} mih="100vh">
+            <Header pos="sticky" top={0} />
+            <Box style={{ flexGrow: 1 }} children={children} />
+            <Footer />
+          </Stack>
+        </MantineUIProvider>
+      </body>
+    </html>
+  )
+}
