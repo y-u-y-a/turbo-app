@@ -75,7 +75,11 @@ export const MantineUIProvider = ({ children }: { children: ReactNode }) => {
             classNames: TextInputClassNames,
           }),
           NumberInput: NumberInput.extend({
-            defaultProps: { variant: "unstyled", styles: { input: { textAlign: "center", cursor: "pointer" } }, hideControls: true },
+            defaultProps: {
+              variant: "unstyled",
+              styles: { input: { textAlign: "center", cursor: "pointer" } },
+              hideControls: true,
+            },
           }),
           DateInput: DateInput.extend({
             defaultProps: { variant: "unstyled", valueFormat: "YYYY年MM月DD日", styles: { input: { textAlign: "center", cursor: "pointer" } } },

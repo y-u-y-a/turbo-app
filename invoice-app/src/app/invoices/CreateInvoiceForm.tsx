@@ -2,9 +2,9 @@
 
 import { CreateInvoiceFormInput, createInvoiceFormSchema } from "@/features/invoice/schema"
 import { BankAccount, Company } from "@/features/invoice/types"
-import { Box, Button, Flex, Group, NumberInput, Paper, Table, Text, Textarea, Title } from "@mantine/core"
-import { DateInput } from "@mantine/dates"
+import { Box, Button, Flex, Group, Paper, Table, Text, Textarea, Title } from "@mantine/core"
 import { useForm, zodResolver } from "@mantine/form"
+import dayjs from "dayjs"
 import html2canvas from "html2canvas"
 import jsPDF from "jspdf"
 
@@ -74,13 +74,7 @@ export const CreateInvoiceForm = () => {
             <Title fz={28} fw="bold" ta="center" lts={6} children="御請求書" />
             <Flex mt={48} align="flex-end" justify="space-between">
               <Text fz={20} fw="bold" ta="left" children={`${company.name} 御中`} />
-              <Group gap={0}>
-                <Text fz={12} children="作成日：" />
-                <DateInput
-                  styles={{ input: { width: 100, textAlign: "right", fontSize: 12, cursor: "pointer" } }}
-                  {...form.getInputProps("billingDate")}
-                />
-              </Group>
+              <Text fz={12} children={`作成日：${dayjs(form.values.createdAt).format("YYYY年MM月DD日")}`} />
             </Flex>
             <Group mt={40} justify="flex-end">
               <Box>
@@ -101,9 +95,7 @@ export const CreateInvoiceForm = () => {
               <Table.Thead>
                 <Table.Tr>
                   <Table.Th ta="center" bg="gray.1" children="振込期限" />
-                  <Table.Th p={0}>
-                    <DateInput {...form.getInputProps("dueDate")} />
-                  </Table.Th>
+                  <Table.Th ta="center" children={dayjs(form.values.dueDate).format("YYYY年MM月DD日")} />
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -123,13 +115,11 @@ export const CreateInvoiceForm = () => {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {form.values.details.map((unit, index) => (
+                {form.values.details.map((unit) => (
                   <Table.Tr key={unit.id}>
                     <Table.Th children={unit.unitName} />
                     <Table.Th ta="right" children={`¥${unit.unitPrice.toLocaleString()}`} />
-                    <Table.Th p={0}>
-                      <NumberInput {...form.getInputProps(`details.${index}.quantity`)} />
-                    </Table.Th>
+                    <Table.Th ta="center" children={unit.quantity} />
                     <Table.Th ta="right" children={`¥${(unit.unitPrice * unit.quantity).toLocaleString()}`} />
                   </Table.Tr>
                 ))}
