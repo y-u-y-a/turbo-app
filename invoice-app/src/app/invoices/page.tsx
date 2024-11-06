@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <Container size="sm" h="100vh" py={20}>
+    <Container size="sm" py={20}>
       <CreateInvoiceForm />
     </Container>
   )

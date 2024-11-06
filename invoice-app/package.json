@@ -17,9 +17,13 @@
   },
   "dependencies": {
     "@mantine/core": "7.13.4",
+    "@mantine/dates": "^7.13.4",
     "@mantine/form": "7.13.4",
     "@mantine/hooks": "7.13.4",
     "@mantine/notifications": "7.13.4",
+    "dayjs": "^1.11.13",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.2",
     "next": "15.0.2",
     "openapi-fetch": "0.12.2",
     "react": "^18.3.1",

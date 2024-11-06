@@ -1,3 +1,4 @@
+import { Footer } from "@/components/templates/Footer"
 import { APP_TITLE } from "@/config/consts"
 import { MantineUIProvider } from "@/config/mantine"
 import { Box, Stack } from "@mantine/core"
@@ -27,7 +28,7 @@ export default function RootLayout({ children }: Props) {
           <Stack gap={0} mih="100vh">
             {/* <Header pos="sticky" top={0} /> */}
             <Box style={{ flexGrow: 1 }} children={children} />
-            {/* <Footer /> */}
+            <Footer />
           </Stack>
         </MantineUIProvider>
       </body>

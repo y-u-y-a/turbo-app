@@ -1,14 +1,32 @@
 "use client"
 
-import { Anchor, Button, Checkbox, Container, type DefaultMantineColor, type MantineColorsTuple, MantineProvider, TextInput } from "@mantine/core"
+import {
+  Anchor,
+  Button,
+  Checkbox,
+  Container,
+  type DefaultMantineColor,
+  type MantineColorsTuple,
+  MantineProvider,
+  NumberInput,
+  TextInput,
+} from "@mantine/core"
 import { Notifications } from "@mantine/notifications"
 import type { ReactNode } from "react"
+
+// dates
+import { DateInput, DatesProvider } from "@mantine/dates"
+import dayjs from "dayjs"
+import "dayjs/locale/ja"
+import customParseFormat from "dayjs/plugin/customParseFormat"
+dayjs.extend(customParseFormat)
 
 // default
 import "@mantine/core/styles.css"
 
 // components
 // import "@mantine/carousel/styles.css"
+import "@mantine/dates/styles.css"
 import "@mantine/notifications/styles.css"
 
 // original
@@ -56,6 +74,12 @@ export const MantineUIProvider = ({ children }: { children: ReactNode }) => {
             defaultProps: { variant: "filled" },
             classNames: TextInputClassNames,
           }),
+          NumberInput: NumberInput.extend({
+            defaultProps: { variant: "unstyled", styles: { input: { textAlign: "center", cursor: "pointer" } }, hideControls: true },
+          }),
+          DateInput: DateInput.extend({
+            defaultProps: { variant: "unstyled", valueFormat: "YYYY年MM月DD日", styles: { input: { textAlign: "center", cursor: "pointer" } } },
+          }),
           Checkbox: Checkbox.extend({
             defaultProps: { color: "#4484BC", iconColor: "white" },
           }),
@@ -65,7 +89,7 @@ export const MantineUIProvider = ({ children }: { children: ReactNode }) => {
       }}
     >
       <Notifications />
-      {children}
+      <DatesProvider settings={{ locale: "ja" }}>{children}</DatesProvider>
     </MantineProvider>
   )
 }

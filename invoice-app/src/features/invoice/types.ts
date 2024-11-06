@@ -5,79 +5,27 @@ export type User = {
   email: string
   /** ユーザー名 */
   name: string
-  /** プロフィール画像URL（任意） */
-  image?: string
-  /** 作成日時 */
-  createdAt: Date
-  /** 更新日時 */
-  updatedAt: Date
 }
 
 export type Company = {
   /** 企業ID */
   id: string
-  /** 所有ユーザーID */
-  userId: string
   /** 企業名 */
   name: string
-  /** 請求先住所 */
-  billingAddress: string
-  /** 請求先担当者名 */
-  billingContact?: string
-  /** 作成日時 */
-  createdAt: Date
-  /** 更新日時 */
-  updatedAt: Date
+  /** 郵便番号 */
+  zipcode: string
+  /** 住所 */
+  address: string
+  /** 電話番号 */
+  phoneNumber: string
+  /** 担当者名 */
+  managerName: string
 }
 
-export type Invoice = {
-  /** 請求書ID */
-  id: string
-  /** 所有ユーザーID */
-  userId: string
-  /** 請求先企業ID */
-  companyId: string
-  /** 振込先口座ID */
-  bankAccountId: string
-  /** 請求書番号 */
-  invoiceNumber: string
-  /** 請求日 */
-  billingDate: Date
-  /** 支払期限日 */
-  dueDate: Date
-  /** 請求種別（時間単価 or 日単価） */
-  billingType: "hourly" | "daily"
-  /** 単価 */
-  unitPrice: number
-  /** 備考 */
-  notes?: string
-  /** 作成日時 */
-  createdAt: Date
-  /** 更新日時 */
-  updatedAt: Date
-}
-
-export type InvoiceDetail = {
-  /** 明細ID */
-  id: string
-  /** 紐づく請求書ID */
-  invoiceId: string
-  /** 作業時間 */
-  workingHours: number
-  /** 金額 */
-  amount: number
-  /** 作成日時 */
-  createdAt: Date
-  /** 更新日時 */
-  updatedAt: Date
-}
-
-/** 銀行口座情報の型定義 */
+/** 銀行口座情報 */
 export type BankAccount = {
   /** 口座ID */
   id: string
-  /** 所有ユーザーID */
-  userId: string
   /** 銀行名 */
   bankName: string
   /** 支店名 */
@@ -90,6 +38,35 @@ export type BankAccount = {
   accountHolder: string
   /** デフォルト口座フラグ */
   isDefault: boolean
+}
+
+/** 請求書情報 */
+export type Invoice = {
+  /** 請求書ID */
+  id: string
+  /** ユーザーID */
+  userId: string
+  /** 請求日 */
+  billingDate: Date
+  /** 振込期限 */
+  dueDate: Date
+  /** 請求種別（時間単価 or 数量単価） */
+  isHourly: boolean
+  /** 請求詳細項目 */
+  details: {
+    /** 項目ID */
+    id: string
+    /** 項目名 */
+    unitName: string
+    /** 単価 */
+    unitPrice: number
+    /** 数量 */
+    quantity: number
+  }[]
+  /** 消費税率 */
+  taxRate: number
+  /** 備考 */
+  notes: string
   /** 作成日時 */
   createdAt: Date
   /** 更新日時 */
