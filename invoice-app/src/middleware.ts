@@ -16,7 +16,7 @@ export const config = {
 
 export async function middleware(req: NextRequest) {
   if (req.nextUrl.pathname === Paths.HOME) {
-    return NextResponse.redirect(new URL(Paths.USERS, req.url))
+    return NextResponse.redirect(new URL(Paths.INVOICES, req.url))
   }
   return NextResponse.next()
 }

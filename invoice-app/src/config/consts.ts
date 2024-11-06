@@ -2,8 +2,7 @@ export const APP_TITLE = "Invoice App"
 
 export const Paths = {
   HOME: "/",
-  USERS: "/users",
-  USER: "/users/:id",
+  INVOICES: "/invoices",
 } as const
 
 export const Images = {

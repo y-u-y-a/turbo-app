@@ -17,14 +17,14 @@ export const Header = (props: BoxProps) => {
           </Anchor>
           <Group gap="md">
             <Group visibleFrom="md" gap="lg">
-              <Anchor mt={3} c="primary" fw="bold" underline="never" component={Link} href={Paths.USERS} children="Users" />
+              <Anchor mt={3} c="primary" fw="bold" underline="never" component={Link} href={Paths.INVOICES} children="請求書作成" />
             </Group>
 
             <Box hiddenFrom="md">
               <Burger color="primary" opened={showMenu} onClick={toggleMenu} />
               <Drawer position="right" opened={showMenu} onClose={toggleMenu}>
                 <Stack gap="lg">
-                  <Anchor underline="never" href={Paths.USERS} fw="bold" children="Users" />
+                  <Anchor underline="never" href={Paths.INVOICES} fw="bold" children="請求書作成" />
                 </Stack>
               </Drawer>
             </Box>

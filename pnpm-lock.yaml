@@ -62,16 +62,16 @@ importers:
         version: 1.9.2
       '@nestjs/cli':
         specifier: ^9.0.0
-        version: 9.5.0(@swc/core@1.6.1(@swc/helpers@0.5.5))
+        version: 9.5.0(@swc/core@1.6.1(@swc/helpers@0.5.13))
       '@nestjs/schematics':
         specifier: ^9.0.0
         version: 9.2.0(chokidar@3.5.3)(typescript@4.9.5)
       '@nestjs/testing':
         specifier: ^9.0.0
-        version: 9.4.3(@nestjs/common@9.4.3(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1))(@nestjs/core@9.4.3(@nestjs/common@9.4.3(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1))(@nestjs/platform-express@9.4.3)(reflect-metadata@0.1.14)(rxjs@7.8.1))(@nestjs/platform-express@9.4.3(@nestjs/common@9.4.3(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1))(@nestjs/core@9.4.3))
+        version: 9.4.3(@nestjs/common@9.4.3(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1))(@nestjs/core@9.4.3)(@nestjs/platform-express@9.4.3)
       '@swc/core':
         specifier: ^1.5.25
-        version: 1.6.1(@swc/helpers@0.5.5)
+        version: 1.6.1(@swc/helpers@0.5.13)
       '@types/express':
         specifier: ^4.17.13
         version: 4.17.21
@@ -95,10 +95,10 @@ importers:
         version: 6.3.4
       ts-loader:
         specifier: ^9.2.3
-        version: 9.5.1(typescript@4.9.5)(webpack@5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.5)))
+        version: 9.5.1(typescript@4.9.5)(webpack@5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.13)))
       ts-node:
         specifier: ^10.0.0
-        version: 10.9.2(@swc/core@1.6.1(@swc/helpers@0.5.5))(@types/node@18.11.18)(typescript@4.9.5)
+        version: 10.9.2(@swc/core@1.6.1(@swc/helpers@0.5.13))(@types/node@18.11.18)(typescript@4.9.5)
       tsconfig-paths:
         specifier: 4.1.1
         version: 4.1.1
@@ -107,7 +107,7 @@ importers:
         version: 4.9.5
       unplugin-swc:
         specifier: ^1.4.5
-        version: 1.4.5(@swc/core@1.6.1(@swc/helpers@0.5.5))(rollup@4.18.0)
+        version: 1.4.5(@swc/core@1.6.1(@swc/helpers@0.5.13))(rollup@4.18.0)
       vitest:
         specifier: ^1.6.0
         version: 1.6.0(@types/node@18.11.18)(jsdom@24.1.0(bufferutil@4.0.8))(sugarss@4.0.1(postcss@8.4.38))(terser@5.31.1)
@@ -636,8 +636,8 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  '@floating-ui/utils@0.2.2':
-    resolution: {integrity: sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==}
+  '@floating-ui/utils@0.2.8':
+    resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
 
   '@google-cloud/firestore@6.8.0':
     resolution: {integrity: sha512-JRpk06SmZXLGz0pNx1x7yU3YhkUXheKgH5hbDZ4kMsdhtfV5qPLJLRI4wv69K0cZorIk+zTMOwptue7hizo0eA==}
@@ -1107,6 +1107,9 @@ packages:
   '@swc/counter@0.1.3':
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
 
+  '@swc/helpers@0.5.13':
+    resolution: {integrity: sha512-UoKGxQ3r5kYI9dALKJapMmuK+1zWM/H17Z1+iwnNmzcJRnfFuevZs375TA5rW31pu4BS4NoSy1fRsexDXfWn5w==}
+
   '@swc/helpers@0.5.5':
     resolution: {integrity: sha512-KGYxvIOXcceOAbEk4bi/dVLEK9z8sZ0uBB3Il5b1rhfClSpcX0yfRO0KmTkqR2cnQDymwLB+25ZyMzICg/cm/A==}
 
@@ -1427,6 +1430,11 @@ packages:
 
   acorn@8.11.3:
     resolution: {integrity: sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
+  acorn@8.14.0:
+    resolution: {integrity: sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -4477,12 +4485,12 @@ snapshots:
 
   '@floating-ui/core@1.6.2':
     dependencies:
-      '@floating-ui/utils': 0.2.2
+      '@floating-ui/utils': 0.2.8
 
   '@floating-ui/dom@1.6.5':
     dependencies:
       '@floating-ui/core': 1.6.2
-      '@floating-ui/utils': 0.2.2
+      '@floating-ui/utils': 0.2.8
 
   '@floating-ui/react-dom@2.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -4498,7 +4506,7 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       tabbable: 6.2.0
 
-  '@floating-ui/utils@0.2.2': {}
+  '@floating-ui/utils@0.2.8': {}
 
   '@google-cloud/firestore@6.8.0':
     dependencies:
@@ -4646,7 +4654,7 @@ snapshots:
       reflect-metadata: 0.1.14
       rxjs: 7.8.1
 
-  '@nestjs/cli@9.5.0(@swc/core@1.6.1(@swc/helpers@0.5.5))':
+  '@nestjs/cli@9.5.0(@swc/core@1.6.1(@swc/helpers@0.5.13))':
     dependencies:
       '@angular-devkit/core': 16.0.1(chokidar@3.5.3)
       '@angular-devkit/schematics': 16.0.1(chokidar@3.5.3)
@@ -4656,7 +4664,7 @@ snapshots:
       chokidar: 3.5.3
       cli-table3: 0.6.3
       commander: 4.1.1
-      fork-ts-checker-webpack-plugin: 8.0.0(typescript@4.9.5)(webpack@5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.5)))
+      fork-ts-checker-webpack-plugin: 8.0.0(typescript@4.9.5)(webpack@5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.13)))
       inquirer: 8.2.5
       node-emoji: 1.11.0
       ora: 5.4.1
@@ -4668,7 +4676,7 @@ snapshots:
       tsconfig-paths: 4.2.0
       tsconfig-paths-webpack-plugin: 4.0.1
       typescript: 4.9.5
-      webpack: 5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.5))
+      webpack: 5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.13))
       webpack-node-externals: 3.0.0
     transitivePeerDependencies:
       - '@swc/core'
@@ -4735,7 +4743,7 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@nestjs/testing@9.4.3(@nestjs/common@9.4.3(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1))(@nestjs/core@9.4.3(@nestjs/common@9.4.3(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1))(@nestjs/platform-express@9.4.3)(reflect-metadata@0.1.14)(rxjs@7.8.1))(@nestjs/platform-express@9.4.3(@nestjs/common@9.4.3(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1))(@nestjs/core@9.4.3))':
+  '@nestjs/testing@9.4.3(@nestjs/common@9.4.3(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1))(@nestjs/core@9.4.3)(@nestjs/platform-express@9.4.3)':
     dependencies:
       '@nestjs/common': 9.4.3(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1)
       '@nestjs/core': 9.4.3(@nestjs/common@9.4.3(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1))(@nestjs/platform-express@9.4.3)(reflect-metadata@0.1.14)(rxjs@7.8.1)
@@ -4938,7 +4946,7 @@ snapshots:
   '@swc/core-win32-x64-msvc@1.6.1':
     optional: true
 
-  '@swc/core@1.6.1(@swc/helpers@0.5.5)':
+  '@swc/core@1.6.1(@swc/helpers@0.5.13)':
     dependencies:
       '@swc/counter': 0.1.3
       '@swc/types': 0.1.8
@@ -4953,9 +4961,14 @@ snapshots:
       '@swc/core-win32-arm64-msvc': 1.6.1
       '@swc/core-win32-ia32-msvc': 1.6.1
       '@swc/core-win32-x64-msvc': 1.6.1
-      '@swc/helpers': 0.5.5
+      '@swc/helpers': 0.5.13
 
   '@swc/counter@0.1.3': {}
+
+  '@swc/helpers@0.5.13':
+    dependencies:
+      tslib: 2.6.2
+    optional: true
 
   '@swc/helpers@0.5.5':
     dependencies:
@@ -5344,6 +5357,8 @@ snapshots:
   acorn-walk@8.3.2: {}
 
   acorn@8.11.3: {}
+
+  acorn@8.14.0: {}
 
   agent-base@6.0.2:
     dependencies:
@@ -6128,7 +6143,7 @@ snapshots:
     dependencies:
       is-callable: 1.2.7
 
-  fork-ts-checker-webpack-plugin@8.0.0(typescript@4.9.5)(webpack@5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.5))):
+  fork-ts-checker-webpack-plugin@8.0.0(typescript@4.9.5)(webpack@5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.13))):
     dependencies:
       '@babel/code-frame': 7.24.7
       chalk: 4.1.2
@@ -6143,7 +6158,7 @@ snapshots:
       semver: 7.6.2
       tapable: 2.2.1
       typescript: 4.9.5
-      webpack: 5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.5))
+      webpack: 5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.13))
 
   form-data@4.0.0:
     dependencies:
@@ -7759,21 +7774,21 @@ snapshots:
       - supports-color
     optional: true
 
-  terser-webpack-plugin@5.3.10(@swc/core@1.6.1(@swc/helpers@0.5.5))(webpack@5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.5))):
+  terser-webpack-plugin@5.3.10(@swc/core@1.6.1(@swc/helpers@0.5.13))(webpack@5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.13))):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
       terser: 5.31.1
-      webpack: 5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.5))
+      webpack: 5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.13))
     optionalDependencies:
-      '@swc/core': 1.6.1(@swc/helpers@0.5.5)
+      '@swc/core': 1.6.1(@swc/helpers@0.5.13)
 
   terser@5.31.1:
     dependencies:
       '@jridgewell/source-map': 0.3.6
-      acorn: 8.11.3
+      acorn: 8.14.0
       commander: 2.20.3
       source-map-support: 0.5.21
 
@@ -7823,7 +7838,7 @@ snapshots:
 
   tree-kill@1.2.2: {}
 
-  ts-loader@9.5.1(typescript@4.9.5)(webpack@5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.5))):
+  ts-loader@9.5.1(typescript@4.9.5)(webpack@5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.13))):
     dependencies:
       chalk: 4.1.2
       enhanced-resolve: 5.17.0
@@ -7831,9 +7846,9 @@ snapshots:
       semver: 7.6.2
       source-map: 0.7.4
       typescript: 4.9.5
-      webpack: 5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.5))
+      webpack: 5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.13))
 
-  ts-node@10.9.2(@swc/core@1.6.1(@swc/helpers@0.5.5))(@types/node@18.11.18)(typescript@4.9.5):
+  ts-node@10.9.2(@swc/core@1.6.1(@swc/helpers@0.5.13))(@types/node@18.11.18)(typescript@4.9.5):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
@@ -7851,7 +7866,7 @@ snapshots:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
     optionalDependencies:
-      '@swc/core': 1.6.1(@swc/helpers@0.5.5)
+      '@swc/core': 1.6.1(@swc/helpers@0.5.13)
 
   tsconfck@3.1.0(typescript@5.3.3):
     optionalDependencies:
@@ -7955,10 +7970,10 @@ snapshots:
 
   unpipe@1.0.0: {}
 
-  unplugin-swc@1.4.5(@swc/core@1.6.1(@swc/helpers@0.5.5))(rollup@4.18.0):
+  unplugin-swc@1.4.5(@swc/core@1.6.1(@swc/helpers@0.5.13))(rollup@4.18.0):
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
-      '@swc/core': 1.6.1(@swc/helpers@0.5.5)
+      '@swc/core': 1.6.1(@swc/helpers@0.5.13)
       load-tsconfig: 0.2.5
       unplugin: 1.10.1
     transitivePeerDependencies:
@@ -8193,7 +8208,7 @@ snapshots:
 
   webpack-virtual-modules@0.6.2: {}
 
-  webpack@5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.5)):
+  webpack@5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.13)):
     dependencies:
       '@types/eslint-scope': 3.7.7
       '@types/estree': 1.0.5
@@ -8216,7 +8231,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(@swc/core@1.6.1(@swc/helpers@0.5.5))(webpack@5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.5)))
+      terser-webpack-plugin: 5.3.10(@swc/core@1.6.1(@swc/helpers@0.5.13))(webpack@5.82.1(@swc/core@1.6.1(@swc/helpers@0.5.13)))
       watchpack: 2.4.1
       webpack-sources: 3.2.3
     transitivePeerDependencies:
