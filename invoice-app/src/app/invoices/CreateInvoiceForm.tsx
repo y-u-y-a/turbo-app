@@ -59,7 +59,7 @@ export const CreateInvoiceForm = () => {
             <Table.Tr>
               <Table.Th bg="gray.1" ta="center" children="内容" />
               <Table.Th bg="gray.1" ta="center" children="単価" />
-              <Table.Th bg="gray.1" ta="center" children="時間" />
+              <Table.Th bg="gray.1" ta="center" children="数量" />
               <Table.Th bg="gray.1" ta="center" children="金額" />
             </Table.Tr>
           </Table.Thead>
