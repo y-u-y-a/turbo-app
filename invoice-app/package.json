@@ -12,7 +12,7 @@
     "prod": "pnpm build && pnpm start",
     "lint": "tsc && pnpm biome lint ./src",
     "fmt": "pnpm biome format --write ./src",
-    "test": "VITE_CJS_IGNORE_WARNING=true vitest run",
+    "test": "VITE_CJS_IGNORE_WARNING=true vitest run --passWithNoTests",
     "test:watch": "VITE_CJS_IGNORE_WARNING=true vitest watch"
   },
   "dependencies": {
