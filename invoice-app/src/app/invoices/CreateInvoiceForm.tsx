@@ -61,11 +61,11 @@ export const CreateInvoiceForm = () => {
 
   return (
     <>
-      {!enabledEditor && (
-        <Group justify="flex-end">
-          <Button my={20} onClick={handleDownload} rightSection={<IconDownload size={18} />} children="PDF" disabled={!form.isValid()} />
-        </Group>
-      )}
+      <Group justify="flex-end">
+        <Button my={20} onClick={handleDownload} rightSection={<IconDownload size={18} />} disabled={!form.isValid() || enabledEditor}>
+          PDF
+        </Button>
+      </Group>
       <Paper shadow="xs" radius="md" withBorder>
         <form onSubmit={form.onSubmit(handleSubmit)} noValidate>
           <Box id="pdf-target" px={60} py={40}>
