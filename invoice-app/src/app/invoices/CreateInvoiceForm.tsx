@@ -3,28 +3,17 @@
 import { dummyCompany } from "@/features/company/types"
 import { CreateInvoiceFormInput, createInvoiceFormSchema } from "@/features/invoice/schema"
 import { dummyBankAccount } from "@/features/user/types"
-import { Box, Button, Flex, Group, NumberInput, Paper, Table, Text, Textarea, Title } from "@mantine/core"
+import { useCommand } from "@/hooks/useCommand"
+import { Box, Button, Flex, Group, Kbd, NumberFormatter, NumberInput, Paper, Table, Text, Textarea, Title } from "@mantine/core"
 import { DateInput } from "@mantine/dates"
 import { useForm, zodResolver } from "@mantine/form"
 import { IconDownload } from "@tabler/icons-react"
 import dayjs from "dayjs"
 import html2canvas from "html2canvas"
 import jsPDF from "jspdf"
-import { useEffect, useState } from "react"
 
 export const CreateInvoiceForm = () => {
-  const [enabledEditor, setEnabledEditor] = useState(true)
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "e") {
-        e.preventDefault()
-        setEnabledEditor((prev) => !prev)
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [])
+  const enabledEditor = useCommand("e")
 
   const form = useForm<CreateInvoiceFormInput>({
     validate: zodResolver(createInvoiceFormSchema),
@@ -61,7 +50,13 @@ export const CreateInvoiceForm = () => {
 
   return (
     <>
-      <Group my={20} justify="flex-end">
+      <Group my={20} justify="space-between">
+        <Flex align="center">
+          <Kbd children="⌘" />
+          &nbsp;+&nbsp;
+          <Kbd children="E" />
+          &nbsp;エディタモード切替
+        </Flex>
         <Button onClick={download} rightSection={<IconDownload size={18} />} disabled={!form.isValid() || enabledEditor} children="PDF" />
       </Group>
       <Paper shadow="xs" radius="md" withBorder>
@@ -101,7 +96,9 @@ export const CreateInvoiceForm = () => {
               <Table.Tbody>
                 <Table.Tr>
                   <Table.Th ta="center" bg="gray.1" children="御請求金額（税込）" />
-                  <Table.Th ta="center" children={`¥${(calculateSubtotal() * form.values.taxRate + calculateSubtotal()).toLocaleString()}`} />
+                  <Table.Th ta="center">
+                    <NumberFormatter value={calculateSubtotal() * form.values.taxRate + calculateSubtotal()} />
+                  </Table.Th>
                 </Table.Tr>
               </Table.Tbody>
             </Table>
@@ -118,7 +115,9 @@ export const CreateInvoiceForm = () => {
                 {form.values.details.map((unit, i) => (
                   <Table.Tr key={unit.id}>
                     <Table.Th children={unit.unitName} />
-                    <Table.Th ta="right" children={`¥${unit.unitPrice.toLocaleString()}`} />
+                    <Table.Th ta="right">
+                      <NumberFormatter value={unit.unitPrice} />
+                    </Table.Th>
                     {enabledEditor ? (
                       <Table.Th children={<NumberInput {...form.getInputProps(`details.${i}.quantity`)} />} />
                     ) : (
@@ -131,17 +130,23 @@ export const CreateInvoiceForm = () => {
                 <Table.Tr>
                   <Table.Th />
                   <Table.Th colSpan={2} bg="gray.1" ta="center" children="小計" />
-                  <Table.Th ta="right" children={`¥${calculateSubtotal().toLocaleString()}`} />
+                  <Table.Th ta="right">
+                    <NumberFormatter value={calculateSubtotal()} />
+                  </Table.Th>
                 </Table.Tr>
                 <Table.Tr>
                   <Table.Th />
                   <Table.Th colSpan={2} bg="gray.1" ta="center" children="消費税（10%）" />
-                  <Table.Th ta="right" children={`¥${(calculateSubtotal() * form.values.taxRate).toLocaleString()}`} />
+                  <Table.Th ta="right">
+                    <NumberFormatter value={calculateSubtotal() * form.values.taxRate} />
+                  </Table.Th>
                 </Table.Tr>
                 <Table.Tr>
                   <Table.Th />
                   <Table.Th colSpan={2} bg="gray.1" ta="center" children="合計" />
-                  <Table.Th ta="right" children={`¥${(calculateSubtotal() * form.values.taxRate + calculateSubtotal()).toLocaleString()}`} />
+                  <Table.Th ta="right">
+                    <NumberFormatter value={calculateSubtotal() * form.values.taxRate + calculateSubtotal()} />
+                  </Table.Th>
                 </Table.Tr>
               </Table.Tbody>
             </Table>

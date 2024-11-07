@@ -8,6 +8,7 @@ import {
   type DefaultMantineColor,
   type MantineColorsTuple,
   MantineProvider,
+  NumberFormatter,
   NumberInput,
   TextInput,
   Textarea,
@@ -97,6 +98,9 @@ export const MantineUIProvider = ({ children }: { children: ReactNode }) => {
           }),
           Checkbox: Checkbox.extend({
             defaultProps: { color: "#4484BC", iconColor: "white" },
+          }),
+          NumberFormatter: NumberFormatter.extend({
+            defaultProps: { prefix: "¥", thousandSeparator: true },
           }),
         },
         /** Press Button(ActionIcon) action style. */
