@@ -21,6 +21,6 @@ describe("UsersController", () => {
   })
 
   it("should have a findAll method", () => {
-    expect(controller.getByPaging).toBeDefined()
+    expect(controller.paging).toBeDefined()
   })
 })
