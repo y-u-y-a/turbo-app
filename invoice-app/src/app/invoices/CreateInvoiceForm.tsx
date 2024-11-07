@@ -41,7 +41,7 @@ export const CreateInvoiceForm = () => {
     console.log(input)
   }
 
-  const handleDownload = async () => {
+  const download = async () => {
     const el = document.getElementById("pdf-target")
     if (!el) return
 
@@ -61,10 +61,8 @@ export const CreateInvoiceForm = () => {
 
   return (
     <>
-      <Group justify="flex-end">
-        <Button my={20} onClick={handleDownload} rightSection={<IconDownload size={18} />} disabled={!form.isValid() || enabledEditor}>
-          PDF
-        </Button>
+      <Group my={20} justify="flex-end">
+        <Button onClick={download} rightSection={<IconDownload size={18} />} disabled={!form.isValid() || enabledEditor} children="PDF" />
       </Group>
       <Paper shadow="xs" radius="md" withBorder>
         <form onSubmit={form.onSubmit(handleSubmit)} noValidate>
