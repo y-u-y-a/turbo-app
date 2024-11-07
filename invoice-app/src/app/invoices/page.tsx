@@ -3,11 +3,11 @@ import type { Metadata } from "next/types"
 import { CreateInvoiceForm } from "./CreateInvoiceForm"
 
 export const metadata: Metadata = {
-  title: "Home",
-  description: "Home",
+  title: "請求書作成",
+  description: "請求書作成",
 }
 
-export default function Page() {
+export default async function Page() {
   return (
     <Container size="sm" py={20}>
       <CreateInvoiceForm />

@@ -10,6 +10,7 @@ import {
   MantineProvider,
   NumberInput,
   TextInput,
+  Textarea,
 } from "@mantine/core"
 import { Notifications } from "@mantine/notifications"
 import type { ReactNode } from "react"
@@ -77,12 +78,22 @@ export const MantineUIProvider = ({ children }: { children: ReactNode }) => {
           NumberInput: NumberInput.extend({
             defaultProps: {
               variant: "unstyled",
-              styles: { input: { textAlign: "center", cursor: "pointer" } },
+              styles: { input: { height: "22.695px", minHeight: "22.695px", color: "red", borderRadius: 0, textAlign: "center", cursor: "pointer" } },
               hideControls: true,
             },
           }),
           DateInput: DateInput.extend({
-            defaultProps: { variant: "unstyled", valueFormat: "YYYY年MM月DD日", styles: { input: { textAlign: "center", cursor: "pointer" } } },
+            defaultProps: {
+              variant: "unstyled",
+              valueFormat: "YYYY年MM月DD日",
+              styles: { input: { height: "22.695px", minHeight: "22.695px", color: "red", borderRadius: 0, textAlign: "center", cursor: "pointer" } },
+            },
+          }),
+          Textarea: Textarea.extend({
+            defaultProps: {
+              variant: "default",
+              styles: { input: { color: "red", borderRadius: 0, cursor: "pointer" } },
+            },
           }),
           Checkbox: Checkbox.extend({
             defaultProps: { color: "#4484BC", iconColor: "white" },
