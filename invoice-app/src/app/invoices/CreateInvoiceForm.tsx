@@ -4,6 +4,7 @@ import { CreateInvoiceFormInput, createInvoiceFormSchema } from "@/features/invo
 import { BankAccount, Company } from "@/features/invoice/types"
 import { Box, Button, Flex, Group, Paper, Table, Text, Textarea, Title } from "@mantine/core"
 import { useForm, zodResolver } from "@mantine/form"
+import { IconDownload } from "@tabler/icons-react"
 import dayjs from "dayjs"
 import html2canvas from "html2canvas"
 import jsPDF from "jspdf"
@@ -68,9 +69,12 @@ export const CreateInvoiceForm = () => {
 
   return (
     <>
-      <Paper pos="relative" shadow="md" radius="md" withBorder>
-        <Box id="pdf-target" px={60} py={40}>
-          <form onSubmit={form.onSubmit(handleSubmit)} noValidate>
+      <Group justify="flex-end">
+        <Button my={20} onClick={handleDownload} rightSection={<IconDownload size={18} />} children="PDF" />
+      </Group>
+      <Paper shadow="xs" radius="md" withBorder>
+        <form onSubmit={form.onSubmit(handleSubmit)} noValidate>
+          <Box id="pdf-target" px={60} py={40}>
             <Title fz={28} fw="bold" ta="center" lts={6} children="御請求書" />
             <Flex mt={48} align="flex-end" justify="space-between">
               <Text fz={20} fw="bold" ta="left" children={`${company.name} 御中`} />
@@ -91,7 +95,7 @@ export const CreateInvoiceForm = () => {
               <Text fz={14} children={`支店名　 ： ${bankAccount.branchName}`} />
               <Text fz={14} children={`口座名義 ： ${bankAccount.accountHolder}`} />
             </Box>
-            <Table mt={60} w="60%" withTableBorder withColumnBorders withRowBorders>
+            <Table mt={40} w="60%" withTableBorder withColumnBorders withRowBorders>
               <Table.Thead>
                 <Table.Tr>
                   <Table.Th ta="center" bg="gray.1" children="振込期限" />
@@ -143,9 +147,8 @@ export const CreateInvoiceForm = () => {
             <Box mt={12}>
               <Textarea radius={0} {...form.getInputProps("notes")} placeholder="備考" />
             </Box>
-          </form>
-        </Box>
-        <Button pos="absolute" right={-160} top={0} onClick={handleDownload} children="PDFダウンロード" />
+          </Box>
+        </form>
       </Paper>
     </>
   )
