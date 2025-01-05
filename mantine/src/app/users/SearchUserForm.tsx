@@ -25,8 +25,8 @@ export const SearchUserForm = () => {
     <form onSubmit={form.onSubmit(search)} noValidate>
       <Group align="flex-end">
         <TextInput maw={200} {...form.getInputProps("name")} label="Name" />
-        <TextInput maw={200} {...form.getInputProps("email")} label="Email" error={!!form.errors.email} />
-        <Button children="Search" variant="filled" type="submit" />
+        <TextInput maw={200} {...form.getInputProps("email")} label="Email" />
+        <Button children="Search" variant="filled" type="submit" disabled={!form.values.name && !form.values.email} />
       </Group>
     </form>
   )
