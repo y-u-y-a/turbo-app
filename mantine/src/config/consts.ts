@@ -21,3 +21,9 @@ export const Errors = {
   INVALID_MATCH_PASSWORD: "パスワードが一致していません",
   MIN_LENGTH_8: "8文字以上で入力してください",
 } as const
+
+export const Z_INDEX = {
+  FOOTER: 99,
+  HEADER: 60,
+  LOADING: 999,
+}

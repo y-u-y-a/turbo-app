@@ -7,8 +7,8 @@ class UserService extends BaseService {
    * @summary ユーザー情報一覧を取得する
    * */
   async getByPaging(currentPage: number, email = ""): Promise<Pagination<User>> {
-    const { data } = await this.api.GET("/users", { params: { query: { currentPage, email } } })
-    if (!data) throw new Error("取得に失敗しました")
+    const { data, error } = await this.api.GET("/users", { params: { query: { currentPage, email } } })
+    if (!data || error) throw new Error("取得に失敗しました")
 
     return {
       ...data.paging,
