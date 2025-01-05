@@ -1,3 +1,4 @@
 packages:
-  - 'web'
+  - 'mantine'
+  - 'nextui'
   - 'api'

@@ -1,4 +1,4 @@
-export const APP_TITLE = "Art Gallery"
+export const APP_TITLE = "Mantine UI"
 
 export const Paths = {
   HOME: "/",

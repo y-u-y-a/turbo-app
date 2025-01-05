@@ -1,10 +1,7 @@
 {
   "private": true,
-  "name": "web",
+  "name": "mantine",
   "version": "1.0.0",
-  "engines": {
-    "node": "18"
-  },
   "scripts": {
     "dev": "NEXT_PRIVATE_DEBUG_CACHE=1 next dev --turbo",
     "build": "next build",
