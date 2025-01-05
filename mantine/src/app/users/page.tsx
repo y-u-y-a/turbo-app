@@ -3,8 +3,8 @@ import { userService } from "@/services/userService"
 import { Container, Flex, Paper, Skeleton, Space, TableScrollContainer } from "@mantine/core"
 import type { Metadata } from "next/types"
 import { Suspense } from "react"
-import { SearchUserForm } from "./SearchUserForm"
-import { UsersTable } from "./UsersTable"
+import { SearchUserForm } from "./(components)/SearchUserForm"
+import { UsersTable } from "./(components)/UsersTable"
 
 /**
  * デフォルトは静的レンダリングであり、mockサーバーがローカルのみなので動的レンダリングを指定しています
