@@ -2,6 +2,7 @@ version: "3.5"
 
 services:
   postgres:
+    container_name: turbo_postgres
     image: postgres:16
     restart: always
     ports:
