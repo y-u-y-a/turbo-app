@@ -1,4 +1,5 @@
 packages:
   - 'mantine'
   - 'nextui'
+  - 'spa'
   - 'api'

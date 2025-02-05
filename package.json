@@ -8,6 +8,9 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "spa": "turbo run dev --filter=spa",
+    "mantine": "turbo run dev --filter=mantine",
+    "nextui": "turbo run dev --filter=nextui",
     "contract": "turbo run dev --filter=contract",
     "lint": "turbo lint",
     "fmt": "turbo fmt",
